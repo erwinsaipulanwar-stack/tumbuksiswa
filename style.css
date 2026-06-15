@@ -397,7 +397,6 @@ footer p:first-child {
     .lightbox-next { right: 5px; }
     .lightbox-close { top: 15px; right: 25px; }
 }
-/* Pop-up Pembayaran */
 .payment-modal {
     display: none; /* Tersembunyi di awal */
     position: fixed;
@@ -456,8 +455,6 @@ footer p:first-child {
     margin-bottom: 12px;
     color: #eee;
 }
-
-/* Tombol WA */
 .btn-wa {
     display: inline-block;
     background-color: #25d366; /* Warna Hijau WA */
@@ -493,4 +490,28 @@ footer p:first-child {
 @keyframes popUp {
     from { transform: scale(0.8); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
+}
+@media screen and (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .navbar-menu {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .navbar-menu a {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+    }
+    
+    .navbar-logo {
+        font-size: 1.2rem;
+        text-align: center;
+    }
 }
