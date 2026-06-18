@@ -133,32 +133,48 @@ formPesanan.addEventListener('submit', function(event) {
         total: totalHargaTeks
     };
 
+    const payModal = document.getElementById('payment-modal');
+    const payImg = payModal.querySelector('.payment-img');
+    const closePayBtn = document.querySelector('.payment-close');
+    const modalP = payModal.querySelector('.payment-content > p');
+
+    if (payImg) {
+        payImg.removeAttribute('src');
+    }
+    if (modalP) {
+        modalP.innerHTML = `Memuat QRIS, mohon tunggu sebentar...`;
+    }
+    if (payModal) {
+        payModal.style.display = 'flex';
+    }
+
+    // Dikirim sebagai form-urlencoded (bukan JSON) supaya:
+    // 1. Terbaca sebagai e.parameter di Apps Script
+    // 2. Request tetap "simple request" sehingga tidak kena CORS preflight
+    const formBody = new URLSearchParams(dataPesanan).toString();
+
     fetch(scriptUrl, {
         method: "POST",
-        mode: "no-cors",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: JSON.stringify(dataPesanan)
+        body: formBody
     })
-    .then(() => {
-        const payModal = document.getElementById('payment-modal');
-        const payImg = payModal.querySelector('.payment-img');
-        const closePayBtn = document.querySelector('.payment-close');
-        const hargaSatuan = parseInt(tierTerpilih.value);
-        const totalHargaBersih = hargaSatuan * parseInt(jumlahTiket);
-        const qrisKamuString = "00020101021126570011ID.DANA.WWW011893600915302440156402090244015640303UMI51440014ID.CO.QRIS.WWW0215ID10265173474270303UMI5204581353033605802ID5917Erwin berkah jaya6011Kab. Bekasi6105177116304BE03"; 
-        const urlQRISDinamis = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrisKamuString)}&amount=${totalHargaBersih}`;
-        
-        if (payImg) {
-            payImg.src = urlQRISDinamis;
+    .then(response => response.json())
+    .then(qrisResult => {
+        if (qrisResult.status !== "success" || !qrisResult.qris_base64) {
+            throw new Error(qrisResult.message || "Gagal membuat QRIS dinamis");
         }
-        const modalP = payModal.querySelector('.payment-content > p');
+
+        if (payImg) {
+            payImg.src = `data:image/png;base64,${qrisResult.qris_base64}`;
+        }
         if (modalP) {
             modalP.innerHTML = `Silakan melakukan pembayaran tepat sebesar: <br><strong style="font-size: 1.6rem; color: #e63946; display: block; margin-top: 10px; letter-spacing: 1px;">${totalHargaTeks}</strong>`;
         }
-        const nomorAdminWA = "6283890435689"; 
-        
+
+        const nomorAdminWA = "6283890435689";
+
         const teksWA = `Halo Admin, saya ingin konfirmasi pembayaran tiket TUMBUK SISWA.
         
 Berikut data pesanan saya:
@@ -176,10 +192,6 @@ Saya akan segera mengirimkan bukti transfer setelah ini. Terima kasih!`;
             btnWaDinamis.target = "_blank";
         }
 
-        if (payModal) {
-            payModal.style.display = 'flex';
-        }
-
         formPesanan.reset();
         cekKuotaOtomatis();
 
@@ -194,7 +206,9 @@ Saya akan segera mengirimkan bukti transfer setelah ini. Terima kasih!`;
         }
     })
     .catch(error => {
-        alert('Terjadi kesalahan: ' + error.message);
+        if (modalP) {
+            modalP.innerHTML = `Gagal membuat QRIS otomatis. Silakan hubungi admin untuk metode pembayaran via WhatsApp.<br><span style="color:#e63946;">${error.message}</span>`;
+        }
     })
     .finally(() => {
         btnSubmit.innerText = "Kirim Pesanan";
