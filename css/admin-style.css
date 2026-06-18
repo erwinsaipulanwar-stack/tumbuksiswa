@@ -1,0 +1,234 @@
+/* ==========================================================================
+   OFFLINE FONTS SETUP 
+   ========================================================================== */
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../assets/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../assets/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('../assets/fonts/Oswald-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* ==========================================================================
+   BASE & VARIABLE CONFIG
+   ========================================================================== */
+:root {
+    --bg-pitch: #060606;
+    --bg-dark: #0d0d0d;
+    --bg-light: #161616;
+    
+    /* PUSAT WARNA MERAH TUMBUK SISWA */
+    --accent: #CD0100; 
+    --accent-hover: #a00100; /* Merah agak gelap buat efek pas disentuh mouse */
+    
+    --text-main: #ffffff;
+    --text-gray: #999999;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --font-display: 'Oswald', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg-pitch); color: var(--text-main); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.max-width { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+/* NAVBAR COMPONENT */
+.navbar { border-bottom: 1px solid var(--bg-light); background-color: var(--bg-dark); sticky: top; position: sticky; top: 0; z-index: 100; }
+.nav-container { max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: var(--font-display); font-size: 24px; font-weight: 900; letter-spacing: -1px; text-decoration: none; color: var(--text-main); }
+.logo span { color: var(--accent); }
+.admin-badge { font-size: 10px; background-color: var(--text-main); color: #000; padding: 2px 6px; border-radius: 4px; margin-left: 8px; vertical-align: middle; font-family: var(--font-sans); font-weight: 700; }
+.nav-links a { color: var(--text-gray); text-decoration: none; font-size: 13px; text-transform: uppercase; font-weight: 700; transition: color 0.3s; }
+.nav-links a:hover { color: var(--text-main); }
+
+/* CONTAINER & HEADER */
+.admin-container { padding-top: 64px; padding-bottom: 128px; }
+.admin-header { margin-bottom: 48px; }
+.sub-tag { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 12px; }
+.page-title { font-family: var(--font-display); font-size: 48px; text-transform: uppercase; }
+.page-subtitle { color: var(--text-gray); font-size: 14px; margin-top: 8px; max-width: 600px; line-height: 1.6; }
+
+/* STATS GRID COMPONENT */
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 64px; }
+.stat-card { background-color: var(--bg-dark); border: 1px solid var(--bg-light); border-radius: 24px; padding: 32px; }
+.stat-card.accent { border-color: var(--accent); }
+.card-label { font-size: 12px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; display: block; margin-bottom: 12px; }
+.stat-card h2 { font-family: var(--font-display); font-size: 36px; text-transform: uppercase; }
+.stat-card h2 small { font-size: 16px; color: var(--text-gray); font-family: var(--font-sans); }
+.stat-card.accent h2 { color: var(--accent); }
+.card-note { font-size: 11px; color: var(--text-gray); margin-top: 8px; }
+.quota-mini-list { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--text-gray); margin-top: 4px; }
+.quota-mini-list strong { color: var(--text-main); }
+
+/* TABLE COMPONENT STYLING */
+.table-section { background-color: var(--bg-dark); border: 1px solid var(--bg-light); border-radius: 32px; padding: 40px; }
+.table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; border-bottom: 1px solid var(--bg-light); padding-bottom: 20px; }
+.table-header h2 { font-family: var(--font-display); font-size: 24px; text-transform: uppercase; }
+.refresh-btn { background: none; border: 1px solid var(--bg-light); color: var(--text-main); padding: 10px 20px; border-radius: 12px; font-family: var(--font-sans); font-size: 12px; font-weight: 700; cursor: pointer; transition: background-color 0.3s; }
+.refresh-btn:hover { background-color: var(--bg-light); border-color: var(--text-gray); }
+
+.table-responsive { width: 100%; overflow-x: auto; }
+.admin-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.admin-table th { font-family: var(--font-display); text-transform: uppercase; color: var(--text-gray); padding: 16px; border-bottom: 2px solid var(--bg-light); letter-spacing: 0.5px; }
+.admin-table td { padding: 18px 16px; border-bottom: 1px solid var(--bg-light); color: #e0e0e0; }
+.admin-table tbody tr:hover { background-color: rgba(255, 255, 255, 0.02); }
+.text-center { text-align: center; }
+
+/* REUSABLE CLASSES FOR TIERS INSIDE TABLE */
+.tier-badge { font-weight: 700; text-transform: uppercase; font-size: 11px; }
+.badge-tribun { color: #999999; }
+.badge-ringside { color: #ffffff; font-style: italic; }
+.badge-vvip { color: var(--accent); }
+
+/* MINI FOOTER */
+.footer-mini { border-top: 1px solid var(--bg-light); background-color: var(--bg-pitch); padding: 32px 0; margin-top: 128px; }
+.footer-container { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-gray); text-transform: uppercase; }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: 1fr; gap: 16px; }
+    .table-section { padding: 24px; border-radius: 24px; }
+}
+@media (max-width: 768px) {
+    .page-title { font-size: 36px; }
+    .footer-container { flex-direction: column; gap: 12px; text-align: center; }
+}
+/* ==========================================================================
+   SECURE GATEWAY LOGIN SCREEN
+   ========================================================================== */
+.login-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: #060606;
+    z-index: 9999; /* Menutupi seluruh elemen web tanpa celah */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.login-box {
+    background-color: #0d0d0d;
+    border: 1px solid #161616;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+}
+
+.login-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: #CD0100;
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    font-size: 13px;
+    color: #999999;
+    line-height: 1.5;
+    margin-bottom: 24px;
+}
+
+.login-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#admin-password {
+    background-color: #161616;
+    border: 1px solid #262626;
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+
+#admin-password:focus {
+    border-color: #CD0100;
+}
+
+.login-btn {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.login-error {
+    font-size: 12px;
+    color: #ff4a4a;
+    margin-top: 14px;
+    font-weight: 700;
+}
+
+.back-to-home {
+    display: block;
+    margin-top: 24px;
+    font-size: 12px;
+    color: #999999;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-to-home:hover {
+    color: #ffffff;
+}
+/* Contoh untuk tombol verifikasi di dashboard admin */
+.verify-btn-action {
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.verify-btn-action:hover {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 10px var(--accent); /* Efek glow merah tipis pas di-hover */
+}
+
+/* Jika ada border card atau teks total revenue yang mau dikasih warna merah */
+.card-highlight {
+    border-left: 4px solid var(--accent);
+}
+
+#stat-revenue {
+    color: var(--accent);
+    font-weight: 700;
+}

@@ -1,0 +1,91 @@
+/* ==========================================================================
+   OFFLINE FONTS SETUP
+   ========================================================================== */
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../assets/fonts/SpaceGrotesk-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../assets/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+@font-face {
+    font-family: 'Oswald';
+    src: url('../assets/fonts/Oswald-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   VARIABLES & BASE RESETS (FULL MERAH TUMBUK #CD0100)
+   ========================================================================== */
+:root {
+    --bg-pitch: #060606;
+    --bg-dark: #0d0d0d;
+    --bg-light: #161616;
+    --accent: #CD0100;       /* Warna Merah Tumbuk Resmi */
+    --accent-hover: #9e0201; /* Merah gelap untuk efek hover */
+    --text-main: #ffffff;
+    --text-gray: #999999;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --font-display: 'Oswald', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg-pitch); color: var(--text-main); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+.max-width { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAVBAR SYSTEM */
+.navbar { border-bottom: 1px solid var(--bg-light); background-color: var(--bg-dark); }
+.nav-container { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.logo { font-family: var(--font-display); font-size: 22px; font-weight: 900; text-decoration: none; color: var(--text-main); letter-spacing: -0.5px; }
+.logo span { color: var(--accent); }
+.secure-tag { font-size: 11px; font-weight: 700; color: var(--text-gray); letter-spacing: 1px; }
+
+/* LAYOUT CONTAINER GRID */
+.payment-container { padding-top: 48px; padding-bottom: 96px; }
+.invoice-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: start; }
+
+/* INVOICE CARD BOX (LEFT) */
+.invoice-box { background-color: var(--bg-dark); border: 1px solid var(--bg-light); border-radius: 24px; padding: 40px; }
+.invoice-header { margin-bottom: 32px; }
+.status-badge.waiting { display: inline-block; font-size: 11px; font-weight: 700; color: var(--accent); background-color: rgba(205, 1, 0, 0.1); border: 1px solid var(--accent); padding: 4px 12px; border-radius: 6px; letter-spacing: 1px; margin-bottom: 16px; }
+.invoice-title { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.5px; }
+.invoice-date { font-size: 13px; color: var(--text-gray); margin-top: 4px; }
+
+.details-list { display: flex; flex-direction: column; gap: 20px; }
+.detail-item { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.detail-item .label { color: var(--text-gray); }
+.detail-item .value { color: var(--text-main); }
+.detail-item .value-tier { text-transform: uppercase; color: #ffffff; font-weight: 700; background-color: var(--bg-light); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+.invoice-divider { height: 1px; background-color: var(--bg-light); margin: 8px 0; }
+.total-row { padding-top: 8px; }
+.total-price { font-family: var(--font-display); font-size: 32px; color: var(--accent); }
+
+.alert-info { background-color: #111111; border-left: 3px solid var(--accent); padding: 16px; border-radius: 12px; margin-top: 32px; font-size: 12px; line-height: 1.6; color: #d0d0d0; }
+
+/* QRIS AREA CARD BOX (RIGHT) */
+.qris-box { background-color: var(--bg-dark); border: 1px solid var(--bg-light); border-radius: 24px; padding: 40px; text-align: center; }
+.qris-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.5px; color: var(--text-main); }
+.qris-subtitle { font-size: 12px; color: var(--text-gray); margin-top: 6px; line-height: 1.5; }
+
+.qris-image-wrapper { position: relative; background-color: #ffffff; border-radius: 16px; padding: 16px; width: 100%; max-width: 280px; margin: 32px auto; min-height: 280px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.qris-img { width: 100%; height: auto; display: block; }
+.loader-text { position: absolute; font-size: 12px; color: #000000; font-weight: 700; width: 80%; line-height: 1.4; }
+
+.qris-footer { display: flex; flex-direction: column; gap: 16px; font-size: 13px; color: var(--text-gray); }
+.btn-wa { background-color: var(--accent); color: #ffffff; border: none; font-family: var(--font-sans); font-size: 13px; font-weight: 700; padding: 16px; border-radius: 12px; cursor: pointer; text-transform: uppercase; transition: all 0.3s; letter-spacing: 0.5px; }
+.btn-wa:hover { background-color: var(--accent-hover); box-shadow: 0 0 15px rgba(205, 1, 0, 0.4); transform: translateY(-1px); }
+.back-btn { font-size: 12px; color: var(--text-gray); text-decoration: none; margin-top: 8px; transition: color 0.2s; }
+.back-btn:hover { color: var(--text-main); }
+
+/* MINI FOOTER STYLING */
+.footer-mini { text-align: center; padding: 40px 0; border-top: 1px solid var(--bg-light); font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* RESPONSIVE DESIGN BREAKPOINTS */
+@media (max-width: 900px) {
+    .invoice-grid { grid-template-columns: 1fr; gap: 24px; }
+    .invoice-box, .qris-box { padding: 24px; }
+    .payment-container { padding-top: 24px; }
+}
