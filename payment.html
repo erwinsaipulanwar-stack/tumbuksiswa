@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Pembayaran - Tumbuk Siswa</title>
+    <link rel="stylesheet" href="css/payment-style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">TUMBUK<span>SISWA.</span></a>
+            <span class="secure-tag">🔒 SECURE CHECKOUT</span>
+        </div>
+    </nav>
+
+    <main class="payment-container max-width">
+        <div class="invoice-grid">
+            
+            <section class="invoice-box">
+                <div class="invoice-header">
+                    <span id="pay-status" class="status-badge waiting">MENUNGGU PEMBAYARAN</span>
+                    <h2 class="invoice-title">RINGKASAN INVOICE</h2>
+                    <p class="invoice-date">Selesaikan pembayaran agar kuota tiket Anda aman.</p>
+                </div>
+
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span class="label">Nama Penonton</span>
+                        <strong id="pay-nama" class="value">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">No. WhatsApp</span>
+                        <strong id="pay-kontak" class="value">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Kelas Tiket</span>
+                        <strong id="pay-tier" class="value-tier">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Jumlah Tiket</span>
+                        <strong id="pay-jumlah" class="value">-</strong>
+                    </div>
+                    <div class="invoice-divider"></div>
+                    <div class="detail-item total-row">
+                        <span class="label">Total Tagihan</span>
+                        <h2 id="pay-total" class="total-price">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="alert-info">
+                    <p>💡 <strong>PENTING:</strong> Sistem kuota kami berjalan <em>real-time</em>. Tiket baru akan memotong kuota dan dianggap sah setelah Anda melakukan verifikasi pembayaran.</p>
+                </div>
+            </section>
+
+            <section id="qris-area-wrapper" class="qris-box">
+                <h3 class="qris-title">SCAN QRIS DI BAWAH</h3>
+                <p class="qris-subtitle">Dukung otomatisasi e-wallet (Dana, OVO, GoPay, ShopeePay) & Mobile Banking.</p>
+                
+                <div class="qris-image-wrapper">
+                    <img id="qris-image" src="" alt="Memuat QRIS Dinamis Tumbuk Siswa..." class="qris-img">
+                    <div id="qris-loader" class="loader-text">Sedang Memproses QRIS Anda...</div>
+                </div>
+
+                <div class="qris-footer">
+                    <p>Setelah melakukan scan dan transfer berhasil:</p>
+                    <button id="btn-wa-confirm" class="btn-wa">KIRIM BUKTI TRANSFER (WA) →</button>
+                    <a href="tiket.html" class="back-btn">← Kembali & Ubah Pesanan</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer-mini">
+        <p>© 2026 Tumbuk Siswa Vol. 4 Official Ticketing System</p>
+    </footer>
+
+    <script src="js/payment.js"></script>
+</body>
+</html>
