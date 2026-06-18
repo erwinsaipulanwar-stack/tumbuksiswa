@@ -59,7 +59,7 @@ function cekKuotaOtomatis() {
                     labelCard.classList.add('sold-out');
                     if (txtStatus) txtStatus.innerText = "HABIS";
                 } else {
-                    if (txtStatus) txtStatus.innerText = `TERSEDIA (${kuota[tierId]})`;
+                    if (txtStatus) txtStatus.innerText = "TERSEDIA";
                 }
             }
             hitungTotal();
