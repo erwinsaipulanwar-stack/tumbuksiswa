@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Pembayaran - Tumbuk Siswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base/style.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/pages/payment-style.css">
+    <link rel="stylesheet" href="css/base/mobile.css">
+    <link rel="icon" type="image/svg+xml" href="icon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="icon-dark.svg" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="logo tumsis" class="logo-img">
+            </a>
+            <span class="secure-tag">🔒 SECURE CHECKOUT</span>
+        </div>
+    </nav>
+
+    <main class="payment-container max-width">
+        <div class="invoice-grid reveal">
+            
+            <section class="invoice-box">
+                <div class="invoice-header">
+                    <span id="pay-status" class="status-badge waiting">MENUNGGU PEMBAYARAN</span>
+                    <p id="last-checked" style="font-size:11px;color:#555;margin-top:8px;text-align:center;font-family:monospace;"></p>
+                    <h2 class="invoice-title">RINGKASAN INVOICE</h2>
+                    <p class="invoice-date">Selesaikan pembayaran agar kuota tiket Anda aman.</p>
+                </div>
+
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span class="label">Nama Penonton</span>
+                        <strong id="pay-nama" class="value">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">No. WhatsApp</span>
+                        <strong id="pay-kontak" class="value">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Kelas Tiket</span>
+                        <strong id="pay-tier" class="value-tier">-</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Jumlah Tiket</span>
+                        <strong id="pay-jumlah" class="value">-</strong>
+                    </div>
+                    <div class="invoice-divider"></div>
+                    <div class="detail-item total-row">
+                        <span class="label">Total Tagihan</span>
+                        <h2 id="pay-total" class="total-price">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="alert-info">
+                    <p>💡 <strong>PENTING:</strong> Sistem kuota kami berjalan <em>real-time</em>. Tiket baru akan memotong kuota dan dianggap sah setelah Anda melakukan verifikasi pembayaran.</p>
+                </div>
+            </section>
+
+            <section id="qris-area-wrapper" class="qris-box">
+                <h3 class="qris-title">SCAN QRIS DI BAWAH</h3>
+                <p class="qris-subtitle">Dukung otomatisasi e-wallet (Dana, OVO, GoPay, ShopeePay) & Mobile Banking.</p>
+                
+                <div class="qris-image-wrapper">
+                    <img id="qris-image" src="" alt="Memuat QRIS Dinamis Tumbuk Siswa..." class="qris-img">
+                    <div id="qris-loader" class="loader-text">Sedang Memproses QRIS Anda...</div>
+                </div>
+
+                <div class="qris-footer">
+                    <p>Setelah melakukan scan dan transfer berhasil:</p>
+                    <button id="btn-wa-confirm" class="btn-wa">KIRIM BUKTI TRANSFER (WA) →</button>
+                    <button id="btn-ubah-pesanan" style="background:#1a1a1a;border:1px solid #333;color:#999;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:13px;">
+                        💬 Butuh Bantuan? Hubungi Admin
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="footer-mini">
+        <p>© 2026 Tumbuk Siswa Vol. 4 Official Ticketing System</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core/supabase-client.js"></script>
+    <script src="js/core/global.js"></script>
+    <script src="js/pages/payment.js"></script>
+</body>
+</html>

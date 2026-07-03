@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Pertandingan - Tumbuk Siswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base/style.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/pages/matches-style.css">
+    <link rel="stylesheet" href="css/base/mobile.css">
+    <link rel="icon" type="image/svg+xml" href="icon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="icon-dark.svg" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="logo tumsis" class="logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="matches.html" class="active">Matches</a>
+                <a href="fighters.html">Fighters</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="tiket.html">Tickets</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="matches-header max-width">
+        <h1 class="page-title">UPCOMING MATCH SCHEDULE</h1>
+        <p class="page-subtitle">Saksikan perpaduan teknik dan ketahanan mental para atlet pelajar dalam simulasi latihan tanding di Vol. 4 mendatang.</p>
+    </header>
+
+    <main class="matches-container max-width">
+
+        <section class="match-section reveal">
+            <div id="fight-cards-wrapper" class="fight-cards-list">
+                <p style="text-align: center; padding: 40px; color: var(--text-gray);">Memuat Fight Card...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer-modern">
+    <div class="footer-max-w">
+        
+        <!-- Main Footer Content -->
+        <div class="footer-main-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand-side">
+                <a href="index.html" class="footer-logo">TUMBUK SISWA</a>
+                <p class="footer-brand-desc">
+                    Platform manajemen olahraga tarung pelajar berprestasi, aman, legal, dan menjunjung tinggi kehormatan olahraga.
+                </p>
+                <!-- Tombol Download / Aksi (Opsional, Meniru Mac Download Button di Referensi) -->
+       
+            </div>
+
+            <!-- Links Columns -->
+            <div class="footer-links-side">
+                <div class="footer-col-nav">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="#">Aturan Medis</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h4>Matches</h4>
+                    <ul>
+                        <li><a href="matches.html">Jadwal Vol.4</a></li>
+                        <li><a href="#">Arsip Match</a></li>
+                        <li><a href="tiket.html">Beli Tiket</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Info / Copyright Section -->
+        <div class="footer-meta-row">
+            <p class="copyright">© 2026 Tumbuk Siswa. All rights reserved.</p>
+            <p class="credits">Built with ❤️ by GNZX Studio</p>
+        </div>
+
+    </div>
+
+    <!-- Giant Background Text (Efek Teks Besar di Belakang) -->
+    <div class="footer-giant-bg-text">
+        <span>Tumbuksiswa</span>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core/supabase-client.js"></script>
+    <script src="js/core/global.js"></script>
+    <script src="js/pages/matches-public.js"></script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard Admin - Tumbuk Siswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/pages/admin-style.css">
+    <link rel="icon" type="image/svg+xml" href="icon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="icon-dark.svg" media="(prefers-color-scheme: dark)">
+</head>
+<body class="cyber-dark">
+
+    <!-- LOGIN SCREEN -->
+    <div id="loginScreen">
+        <div class="login-split-container">
+            <div class="login-image-side">
+                <img src="assets/images/siganteng.jpg" alt="Login Banner">
+            </div>
+            <div class="login-card">
+                <div class="login-header">
+                    <div class="brand-logo">
+                        <i class="fa-solid fa-skull-crossbones"></i>
+                    </div>
+                    <h2>TUMBUK SISWA</h2>
+                    <p>CORE DATABASE ADMINISTRATION ACCESS</p>
+                </div>
+                <form id="loginForm" autocomplete="off">
+                    <div class="input-group-modern">
+                        <label for="loginEmail">SYSTEM EMAIL</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="admin@tumbuksiswa.id" required>
+                        </div>
+                    </div>
+                    <div class="input-group-modern">
+                        <label for="loginPassword">ACCESS KEY</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-login-submit">
+                        <span>ESTABLISH CONNECTION</span>
+                        <i class="fa-solid fa-terminal"></i>
+                    </button>
+                </form>
+                <div class="login-footer">
+                    <p><i class="fa-solid fa-shield-halved"></i> Secured with Supabase Encrypted Auth Gate</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-layout" style="display:none;">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html" class="logo">
+                    <img src="assets/logo.svg" alt="logo tumsis" class="logo-img">
+                </a>
+                <button class="btn-close-sidebar" id="closeSidebarBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-section="dashboard">
+                    <i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span>
+                </a>
+                <a href="#" class="menu-item" data-section="fighters">
+                    <i class="fa-solid fa-user-ninja"></i> <span>CRUD Fighter</span>
+                </a>
+                <a href="#" class="menu-item" data-section="matches">
+                    <i class="fa-solid fa-gavel"></i> <span>CRUD Match</span>
+                </a>
+                <a href="#" class="menu-item" data-section="tickets">
+                    <i class="fa-solid fa-ticket"></i> <span>Data Pesanan & Tiket</span>
+                </a>
+                <a href="#" class="menu-item" data-section="pricing">
+                    <i class="fa-solid fa-tags"></i> <span>Ticket Pricing</span>
+                </a>
+                <a href="#" class="menu-item" data-section="verify">
+                    <i class="fa-solid fa-qrcode"></i> <span>Verify & Print</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-container">
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="btn-hamburger" id="hamburgerBtn">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                    <h1 class="page-title" id="pageTitle">Dashboard Overview</h1>
+                </div>
+                <div class="topbar-right">
+                    <!-- Notifications: diisi dari pesanan WAITING -->
+                    <div class="notification-wrapper">
+                        <button class="topbar-btn" id="notifDropdownBtn">
+                            <i class="fa-solid fa-bell"></i>
+                            <span class="notif-badge" id="notifBadgeCount" style="display:none;"></span>
+                        </button>
+                        <div class="dropdown-panel" id="notifDropdown">
+                            <div class="dropdown-header">
+                                <h3>Pesanan Menunggu</h3>
+                                <a href="#" class="btn-text-action" id="notifGoToTickets">LIHAT SEMUA</a>
+                            </div>
+                            <div class="dropdown-body" id="notifContainer">
+                                <p style="font-size:12px; color:#555; padding:12px;">Memuat notifikasi...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="profile-wrapper">
+                        <button class="profile-trigger" id="profileDropdownBtn">
+                            <img src="assets/images/ceo.jpg" alt="Admin Avatar" class="user-avatar">
+                            <div class="user-info-meta">
+                                <span class="user-name">CEO-TUMSIS</span>
+                                <span class="user-role">MR. SANDY SOUTAR</span>
+                            </div>
+                            <i class="fa-solid fa-chevron-down arrow-icon"></i>
+                        </button>
+                        <div class="dropdown-panel" id="profileDropdown">
+                            <a href="#" class="dropdown-item text-danger" id="logoutBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i> Keluar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTENT BODY -->
+            <div class="content-body">
+                <!-- SKELETON LOADER -->
+                <div id="skeletonLoader" class="skeleton-wrapper hidden">
+                    <div class="skeleton-grid-metrics">
+                        <div class="skeleton-card-metric"></div>
+                        <div class="skeleton-card-metric"></div>
+                        <div class="skeleton-card-metric"></div>
+                        <div class="skeleton-card-metric"></div>
+                    </div>
+                    <div class="skeleton-block-large"></div>
+                </div>
+
+                <div id="realContent">
+                    <!-- SECTION: DASHBOARD -->
+                    <section id="section-dashboard" class="content-section active">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon"><i class="fa-solid fa-wallet"></i></div>
+                                <div class="metric-data">
+                                    <span class="metric-label">Total Pendapatan</span>
+                                    <h2 class="metric-value" id="statRevenue">Rp 0</h2>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon"><i class="fa-solid fa-ticket"></i></div>
+                                <div class="metric-data">
+                                    <span class="metric-label">Tiket Terjual</span>
+                                    <h2 class="metric-value" id="statTickets">0 Terjual</h2>
+                                </div>
+                            </div>
+                            <div class="metric-card metric-verified">
+                                <div class="metric-icon"><i class="fa-solid fa-circle-check"></i></div>
+                                <div class="metric-data">
+                                    <span class="metric-label">Tiket Terverifikasi</span>
+                                    <h2 class="metric-value" id="statVerifiedTickets">0 Terverif</h2>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon"><i class="fa-solid fa-user-ninja"></i></div>
+                                <div class="metric-data">
+                                    <span class="metric-label">Fighter Terdaftar</span>
+                                    <h2 class="metric-value" id="statFighters">0</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-grid">
+                            <div class="card-panel flex-grow-2">
+                                <div class="panel-header">
+                                    <h3>Preview Fight Card Arena</h3>
+                                </div>
+                                <div class="fight-card-preview-container" id="fightCardPreview"></div>
+                            </div>
+                            <div class="card-panel">
+                                <div class="panel-header">
+                                    <h3>Log Aktivitas Sistem</h3>
+                                </div>
+                                <div class="activity-log-timeline" id="activityLogList"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- SECTION: CRUD FIGHTER -->
+                    <section id="section-fighters" class="content-section">
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="searchFighter" placeholder="Cari nama fighter...">
+                            </div>
+                            <button class="btn btn-primary" id="addFighterBtn">
+                                <i class="fa-solid fa-plus"></i> Tambah Fighter
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="fighterTable">
+                                <thead>
+                                    <tr>
+                                        <th>Fighter</th>
+                                        <th>Sasana / Gym / Sekolah</th>
+                                        <th>Tinggi Badan</th>
+                                        <th>Berat Badan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- SECTION: CRUD MATCH -->
+                    <section id="section-matches" class="content-section">
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="searchMatch" placeholder="Cari match / petarung...">
+                            </div>
+                            <button class="btn btn-primary" id="addMatchBtn">
+                                <i class="fa-solid fa-plus"></i> Buat Match Baru
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="matchTable">
+                                <thead>
+                                    <tr>
+                                        <th>Segment Title</th>
+                                        <th>Fighter Blue</th>
+                                        <th>Fighter Red</th>
+                                        <th>Kelas Berat</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- SECTION: DATA PESANAN & TIKET -->
+                    <section id="section-tickets" class="content-section">
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="searchOrder" placeholder="Cari Invoice atau Nama...">
+                            </div>
+                            <!-- FILTER STATUS BARU -->
+                            <select id="filterOrderStatus" class="modern-select" style="min-width:160px;">
+                                <option value="ALL">Semua Status</option>
+                                <option value="WAITING">Menunggu (WAITING)</option>
+                                <option value="PAID">Lunas (PAID)</option>
+                            </select>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table" id="orderTable">
+                                <thead>
+                                    <tr>
+                                        <th></th><!-- kolom expand -->
+                                        <th>No Invoice</th>
+                                        <th>Pembeli</th>
+                                        <th>WhatsApp</th>
+                                        <th>Kategori</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- SECTION: TICKET PRICING -->
+                    <section id="section-pricing" class="content-section">
+                        <div class="pricing-cards-grid" id="pricingTierContainer"></div>
+                    </section>
+
+                    <!-- SECTION: VERIFY & PRINT -->
+                    <section id="section-verify" class="content-section">
+                        <div class="scanner-container">
+                            <header class="hud-header">
+                                <span class="sub-tag">// LIVE GATE VALIDATION</span>
+                                <h2 class="hud-title">GATE<span>SCANNER</span></h2>
+                                <p id="session-counter">SESSION VERIFIED: 0 TIKET</p>
+                            </header>
+
+                            <!-- Input Manual -->
+                            <div class="card-panel input-fallback-panel" style="margin-bottom: 24px; padding: 16px;">
+                                <div class="verification-box" style="display: flex; gap: 10px; flex-direction: row; margin-bottom: 0;">
+                                    <input type="text" id="ticketScannerInput" class="modern-input scan-input-manual"
+                                        placeholder="Ketik Manual ID QR Unik Penonton"
+                                        style="flex: 1; margin: 0; font-size: 0.85rem; text-align: left; padding: 11px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: rgba(0,0,0,0.2); color:#fff; outline:none;">
+                                    <button class="btn btn-primary" id="btnVerifyTicket" style="padding: 11px 20px; white-space: nowrap;">
+                                        <i class="fa-solid fa-keyboard"></i> Proses
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Kamera -->
+                            <div class="camera-wrapper" id="camera-box-interface">
+                                <div class="hud-bracket tl"></div>
+                                <div class="hud-bracket tr"></div>
+                                <div class="hud-bracket bl"></div>
+                                <div class="hud-bracket br"></div>
+                                <div id="reader"></div>
+                            </div>
+
+                            <!-- Upload Gambar -->
+                            <div class="upload-wrapper" id="upload-box-interface">
+                                <label for="qr-input-file" class="btn-upload-file">
+                                    📁 // UPLOAD IMAGE / SCREENSHOT FROM GALLERY
+                                </label>
+                                <input type="file" id="qr-input-file" accept="image/*" style="display: none;">
+                            </div>
+
+                            <!-- Hasil Scan -->
+                            <div class="result-panel" id="monitor-result">
+                                <div class="status-title" id="res-title">READY TO SCAN</div>
+                                <div class="status-desc" id="res-name">NAMA: -</div>
+                                <div class="status-desc" id="res-detail">LOG: -</div>
+                                <button class="btn-next-scan" id="btn-reset-scan">// SCAN NEXT PASS</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL: FIGHTER -->
+    <div class="modal-backdrop" id="fighterModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="fighterModalTitle">Form Data Petarung</h3>
+                <button class="btn-close-modal close-modal-trigger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="fighterForm" class="modern-form">
+                    <input type="hidden" id="fighterId">
+                    <div class="form-group">
+                        <label for="fighterName">Nama Lengkap Fighter</label>
+                        <input type="text" id="fighterName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fighterNickname">Nickname Juang</label>
+                        <input type="text" id="fighterNickname" placeholder="E.g., Si Garong" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fighterSchool">Sasana / Gym / Sekolah</label>
+                        <input type="text" id="fighterSchool" required>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="fighterHeight">Tinggi Badan (cm)</label>
+                            <input type="number" id="fighterHeight" min="100" max="250" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fighterWeight">Berat Badan (kg)</label>
+                            <input type="number" id="fighterWeight" min="0" max="200" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fighterAvatarFile">Upload Foto Fighter</label>
+                        <input type="file" id="fighterAvatarFile" accept="image/*">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary close-modal-trigger">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Roster</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: MATCH -->
+    <div class="modal-backdrop" id="matchModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 id="matchModalTitle">Buat Jadwal Match Arena</h3>
+                <button class="btn-close-modal close-modal-trigger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="matchForm" class="modern-form">
+                    <input type="hidden" id="matchId">
+                    <div class="form-group">
+                        <label for="matchPart">Segment Title (Opsional)</label>
+                        <input type="text" id="matchPart" placeholder="Contoh: Main Event, Co-Main Event">
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="matchBlue">Fighter Corner Biru</label>
+                            <select id="matchBlue" class="modern-select" required>
+                                <option value="" disabled selected>Pilih nama petarung...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchRed">Fighter Corner Merah</label>
+                            <select id="matchRed" class="modern-select" required>
+                                <option value="" disabled selected>Pilih nama petarung...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="matchTime">Kelas Berat / Divisi</label>
+                            <input type="text" id="matchTime" placeholder="Contoh: Kelas KKM (56-65 KG)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="matchStatus">Status Laga</label>
+                            <select id="matchStatus" class="modern-select">
+                                <option value="PENDING">PENDING</option>
+                                <option value="LIVE">LIVE</option>
+                                <option value="FINISHED">FINISHED</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary close-modal-trigger">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Match Card</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT PESANAN -->
+    <div class="modal-backdrop" id="orderModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3>Kelola Data & Status Tiket</h3>
+                <button class="btn-close-modal close-modal-trigger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="orderForm" class="modern-form">
+                    <input type="hidden" id="orderId">
+                    <div class="form-group">
+                        <label for="orderNamaInput">Nama Pemesan / Kolektif Penonton</label>
+                        <input type="text" id="orderNamaInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderWaInput">No. WhatsApp Kontak</label>
+                        <input type="text" id="orderWaInput" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Aksi Validasi Pembayaran</label>
+                        <select id="orderStatusSelect" class="modern-select">
+                            <option value="KEEP">Biarkan Status Saat Ini</option>
+                            <option value="PAID">Set LUNAS & Pecah Baris QR Masuk Gate (Aksi Sekali)</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary close-modal-trigger">Batal</button>
+                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CONFIRM DELETE -->
+    <div class="modal-backdrop" id="deleteConfirmModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-header">
+                <h3>Konfirmasi Penghapusan</h3>
+                <button class="btn-close-modal close-modal-trigger"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="delete-warning-text">Apakah Anda yakin ingin menghapus data ini secara permanen dari database?</p>
+                <div class="modal-actions justify-center mt-6">
+                    <button type="button" class="btn btn-secondary close-modal-trigger">Batal</button>
+                    <button type="button" class="btn btn-danger" id="btnExecuteDelete">Ya, Hapus Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core/supabase-client.js"></script>
+    <script src="js/pages/admin.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Tiket - Tumbuk Siswa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base/style.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/pages/tiket-style.css">
+    <link rel="stylesheet" href="css/base/mobile.css">
+    <link rel="icon" type="image/svg+xml" href="icon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="icon-dark.svg" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="logo tumsis" class="logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="matches.html">Matches</a>
+                <a href="fighters.html">Fighters</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="tiket.html" class="active">Tickets</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="booking-container max-width">
+        <div class="booking-form-section reveal">
+            <h1 class="page-title">ORDER ARENA TICKET</h1>
+            <p class="page-subtitle">Isi data diri lu dengan benar. Sistem otomatis akan mengecek kuota riil dari database dan memunculkan kode QRIS pembayaran.</p>
+
+            <form class="main-form">
+                <div class="form-group">
+                    <label for="event">Pilih Pertandingan</label>
+                    <select id="event" name="event" required>
+                        <option value="vol4">Tumbuk Siswa Vol. 4 - Jumat, 26 Juni 2026</option>
+                        <option value="vol5" disabled>Tumbuk Siswa Vol. 5 - (Segera Hadir)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <h2 class="form-section-title">Pilih Kategori Kelas</h2>
+                    <div class="ticket-options-grid">
+                        
+                        <label for="tribun" class="ticket-card-option">
+                            <input type="radio" name="tier" id="tribun" value="35000" checked>
+                            <div class="ticket-card-content">
+                                <div class="ticket-info-top">
+                                    <h3>Kelas Reguler</h3>
+                                    <span class="price">Rp 35.000</span>
+                                </div>
+                                <p>Regular standing area. For 1 person.</p>
+                                <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+                                    <span class="ticket-status">MEMUAT...</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label for="ringside" class="ticket-card-option">
+                            <input type="radio" name="tier" id="ringside" value="75000">
+                            <div class="ticket-card-content">
+                                <div class="ticket-info-top">
+                                    <h3>Kelas Unggulan</h3>
+                                    <span class="price">Rp 75.000</span>
+                                </div>
+                                <p>Regular standing area. For 1 person.</p>
+                                <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+                                    <span class="ticket-status">MEMUAT...</span>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label for="vvip" class="ticket-card-option VIP">
+                            <input type="radio" name="tier" id="vvip" value="150000">
+                            <div class="ticket-card-content">
+                                <div class="ticket-info-top">
+                                    <h3>Kelas Akselerasi VVIP</h3>
+                                    <span class="price">Rp 150.000</span>
+                                </div>
+                                <p>Regular standing area. For 1 person.</p>
+                                <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+                                    <span class="ticket-status">MEMUAT...</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+               <div class="form-group">
+    <label for="jumlah">Jumlah Tiket</label>
+    <div class="counter-wrapper">
+        <button type="button" class="counter-btn" id="btn-minus">−</button>
+        <span id="jumlah-display">1</span>
+        <input type="hidden" id="jumlah" value="1">
+        <button type="button" class="counter-btn" id="btn-plus">+</button>
+    </div>
+    <small class="input-note">*Maksimal pembelian 5 tiket per transaksi</small>
+</div>
+                <div class="form-group">
+                    <div class="total-display">
+                        <span>Total Tagihan:</span>
+                        <h2 id="total">Rp 35.000</h2>
+                    </div>
+                </div>
+
+                <div class="form-section-divider">
+                    <h2>Data Identitas Penonton</h2>
+                </div>
+
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" placeholder="Masukkan nama sesuai kartu pelajar/KTP" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kontak">Nomor WhatsApp Active</label>
+                    <input type="tel" id="kontak" placeholder="Contoh: 081234567890" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="school">Asal Sekolah / Sasana (Opsional)</label>
+                    <input type="text" id="school" placeholder="Misal: SMK Letris Indonesia 2">
+                </div>
+
+                <button type="submit" class="submit-btn">Kirim Pesanan</button>
+            </form>
+        </div>
+
+       <div class="booking-sidebar">
+    <div class="sidebar-sticky-card reveal reveal-delay-1">
+                <div class="sidebar-graphic">
+                    <img src="assets/images/hero-fighter.jpg" alt="Arena Preview">
+                    <div class="sidebar-gradient"></div>
+                </div>
+                <div class="sidebar-info-box">
+                    <h3>⚠️ Regulasi Arena</h3>
+                    <ul>
+                        <li>Dilarang membawa senjata tajam atau miras.</li>
+                        <li>Wajib menjaga ketertiban antar pendukung sekolah.</li>
+                        <li>Dilarang melakukan provokasi fisik di luar area ring.</li>
+                    </ul>
+                    <p class="notice">Melanggar aturan ini akan langsung diserahkan ke pihak berwajib.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="payment-modal" class="payment-modal">
+        <div class="payment-modal-content">
+            <span class="payment-close">&times;</span>
+            <h2 class="modal-title">Invoice Pembayaran</h2>
+            <div class="payment-content">
+                <p>Silakan melakukan pembayaran tepat sebesar:</p>
+            </div>
+            <div class="qr-container">
+                <img class="payment-img" src="" alt="QRIS Code Otomatis">
+            </div>
+            <div class="modal-instructions">
+                <p>1. Scan kode QRIS di atas pake DANA, OVO, GoPay, ShopeePay, atau M-Banking lu.</p>
+                <p>2. Pastikan nominal pembayaran sama persis dengan tagihan.</p>
+                <p>3. **WAJIB:** Klik tombol hijau di bawah ini buat kirim konfirmasi chat & bukti transfer langsung ke WhatsApp Admin!</p>
+            </div>
+            <a id="btn-wa-dinamis" href="#" class="wa-confirm-btn">Sudah Bayar, Kirim Bukti Transfer →</a>
+        </div>
+    </div>
+
+    <!-- [FIX ATURAN] Modal syarat & ketentuan, wajib dicentang sebelum lanjut bayar -->
+    <div id="rules-modal" class="payment-modal">
+        <div class="payment-modal-content rules-modal-content">
+            <span class="payment-close" id="rules-close">&times;</span>
+
+            <div class="rules-header">
+                <div class="rules-header-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="rgba(205,1,0,0.15)" stroke="#CD0100" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M14 2v5h5" stroke="#CD0100" stroke-width="1.5" stroke-linejoin="round"/>
+                        <path d="M8 12.5h8M8 16h8M8 9h4" stroke="#CD0100" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="rules-header-text">
+                    <h2 class="modal-title rules-title">Syarat & Ketentuan</h2>
+                    <p class="rules-subtitle">Wajib dibaca sebelum lanjut ke pembayaran</p>
+                </div>
+            </div>
+
+            <div class="rules-body">
+                <div class="rules-section">
+                    <h4>1 — Ketertiban & Keamanan Arena</h4>
+                    <p>Dilarang membawa senjata tajam atau minuman keras ke area arena. Setiap penonton wajib menjaga ketertiban antar pendukung sekolah dan dilarang melakukan provokasi fisik di luar area ring.</p>
+                </div>
+                <div class="rules-section">
+                    <h4>2 — Tiket & Pembayaran</h4>
+                    <p>Tiket yang sudah dibeli tidak dapat dibatalkan atau di-refund dengan alasan apapun. Pastikan seluruh data pemesanan sudah benar sebelum melakukan pembayaran.</p>
+                </div>
+                <div class="rules-section">
+                    <h4>3 — Verifikasi Data Penonton</h4>
+                    <p>Panitia berhak menolak masuk penonton yang datanya tidak sesuai dengan data pemesanan yang terdaftar di sistem.</p>
+                </div>
+                <div class="rules-section">
+                    <h4>4 — Konsekuensi Pelanggaran</h4>
+                    <p>Pelanggaran terhadap aturan-aturan di atas akan langsung diserahkan ke pihak berwajib tanpa toleransi.</p>
+                </div>
+            </div>
+
+            <label class="rules-agree-check" for="rules-agree-checkbox">
+                <input type="checkbox" id="rules-agree-checkbox">
+                <span>Saya sudah membaca dan menyetujui seluruh <strong>Syarat & Ketentuan</strong> di atas.</span>
+            </label>
+
+            <div class="rules-actions">
+                <button type="button" id="rules-decline" class="rules-btn rules-btn-decline">Batal</button>
+                <button type="button" id="btn-confirm-rules" class="rules-btn rules-btn-accept" disabled>Setuju</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-modern">
+    <div class="footer-max-w">
+        
+        <!-- Main Footer Content -->
+        <div class="footer-main-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand-side">
+                <a href="index.html" class="footer-logo">TUMBUK SISWA</a>
+                <p class="footer-brand-desc">
+                    Platform manajemen olahraga tarung pelajar berprestasi, aman, legal, dan menjunjung tinggi kehormatan olahraga.
+                </p>
+                <!-- Tombol Download / Aksi (Opsional, Meniru Mac Download Button di Referensi) -->
+            
+            </div>
+
+            <!-- Links Columns -->
+            <div class="footer-links-side">
+                <div class="footer-col-nav">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="#">Aturan Medis</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h3>Matches</h3>
+                    <ul>
+                        <li><a href="matches.html">Jadwal Vol.4</a></li>
+                        <li><a href="#">Arsip Match</a></li>
+                        <li><a href="tiket.html">Beli Tiket</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h3>Socials</h3>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Info / Copyright Section -->
+        <div class="footer-meta-row">
+            <p class="copyright">© 2026 Tumbuk Siswa. All rights reserved.</p>
+            <p class="credits">Built with ❤️ by GNZX Studio</p>
+        </div>
+
+    </div>
+
+    <!-- Giant Background Text (Efek Teks Besar di Belakang) -->
+    <div class="footer-giant-bg-text">
+        <span>Tumbuksiswa</span>
+    </div>
+</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core/supabase-client.js"></script>
+    <script src="js/core/global.js"></script>
+    <script src="js/pages/tiket.js"></script>
+</body>
+</html>

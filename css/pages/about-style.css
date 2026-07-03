@@ -1,0 +1,235 @@
+/* ==========================================================================
+   ABOUT PAGE STYLING
+   Mengandalkan css/base/style.css dan css/components/navbar.css.
+   ========================================================================== */
+
+.text-accent {
+    color: var(--accent);
+}
+
+/* ABOUT HEADER */
+.about-header {
+    padding-top: 112px;
+    padding-bottom: 56px;
+}
+
+.about-header .sub-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(205, 1, 0, 0.12);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* page-title inherits shared base style */
+
+/* SECTION 1: STORY GRID */
+.about-story {
+    padding-bottom: 112px;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 48px;
+    align-items: center;
+}
+
+.story-content {
+    grid-column: span 6;
+}
+
+.story-content h2 {
+    font-family: var(--font-display);
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+}
+
+.story-content p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.story-graphic {
+    grid-column: span 6;
+}
+
+.graphic-frame {
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid var(--bg-light);
+    position: relative;
+}
+
+.frame-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--bg-pitch) 0%, transparent 50%);
+}
+
+/* SECTION 2: PILLARS */
+.pillars-section {
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--bg-light);
+    border-bottom: 1px solid var(--bg-light);
+    padding: 96px 0;
+}
+
+.pillars-header {
+    margin-bottom: 48px;
+}
+
+.section-title-alt {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.pillar-card {
+    background-color: var(--bg-pitch);
+    border: 1px solid var(--bg-light);
+    border-radius: 24px;
+    padding: 40px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.pillar-card:hover {
+    border-color: rgba(205, 1, 0, 0.4);
+}
+
+.pillar-card.active {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(205, 1, 0, 0.15);
+    background: linear-gradient(135deg, #110407 0%, var(--bg-pitch) 100%);
+}
+
+.pillar-num {
+    font-family: var(--font-display);
+    font-size: 14px;
+    color: var(--accent-hover);
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+}
+
+.pillar-card h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.pillar-card p {
+    color: var(--text-gray);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* SECTION 3: SAFETY CONTAINER */
+.safety-section {
+    padding-top: 128px;
+    padding-bottom: 128px;
+}
+
+.safety-container {
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-pitch));
+    border: 1px solid var(--bg-light);
+    border-radius: 40px;
+    padding: 64px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 48px;
+    align-items: center;
+}
+
+.safety-graphic {
+    grid-column: span 5;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--bg-light);
+    position: relative;
+}
+
+.safety-overlay-grad {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-pitch) 10%, transparent 80%);
+}
+
+.safety-content {
+    grid-column: span 7;
+}
+
+.safety-content p {
+    color: var(--text-gray);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.safety-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.safety-list li {
+    font-size: 14px;
+    color: var(--text-main);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 24px;
+}
+
+.safety-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+
+/* FOOTER TUNE-UPS */
+.footer-modern .footer-col-nav h3 {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    margin-bottom: 16px;
+}
+
+.footer-modern .copyright,
+.footer-modern .credits {
+    color: rgba(255, 255, 255, 0.74);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .story-grid, .safety-container { grid-template-columns: 1fr; }
+    .story-content, .story-graphic, .safety-content, .safety-graphic { grid-column: span 12; }
+    .pillars-grid { grid-template-columns: 1fr; }
+}
+

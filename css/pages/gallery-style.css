@@ -1,0 +1,86 @@
+/* ==========================================================================
+   GALLERY PAGE STYLING
+   Mengandalkan css/base/style.css dan css/components/navbar.css.
+   ========================================================================== */
+
+/* GALLERY HEADER */
+.gallery-header {
+    padding-top: 80px;
+    padding-bottom: 48px;
+}
+
+/* PREMIUM GRID SYSTEM */
+.gallery-container {
+    padding-bottom: 128px;
+}
+
+.main-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+}
+
+.g-card {
+    position: relative;
+    border: 1px solid var(--bg-light);
+    border-radius: 28px;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+}
+
+.grid-w-4 { grid-column: span 4; }
+.grid-w-6 { grid-column: span 6; aspect-ratio: 16 / 10; }
+.grid-w-8 { grid-column: span 8; aspect-ratio: 16 / 9; }
+
+.g-card:hover img {
+    transform: scale(1.03);
+    filter: grayscale(40%) contrast(115%);
+}
+
+.g-card:hover {
+    border-color: rgba(205, 1, 0, 0.4);
+}
+
+.g-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6, 6, 6, 0.95) 5%, rgba(6, 6, 6, 0.4) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.g-card:hover .g-overlay {
+    opacity: 1;
+}
+
+.g-tag {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.g-overlay h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .main-gallery-grid { gap: 16px; }
+    .grid-w-4, .grid-w-6, .grid-w-8 { grid-column: span 6; aspect-ratio: 1 / 1; }
+}
+
+
+

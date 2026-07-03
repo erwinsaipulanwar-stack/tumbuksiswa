@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumbuk Siswa — Student Combat Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Dependencies -->
+    <link rel="stylesheet" href="css/base/style.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/base/mobile.css">
+    
+    <!-- CSS Khusus Index / Homepage (FIXED VERSION) -->
+    <link rel="stylesheet" href="css/pages/index-style.css">
+    <link rel="icon" type="image/svg+xml" href="icon-light.svg" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/svg+xml" href="icon-dark.svg" media="(prefers-color-scheme: dark)">
+    
+</head>
+<body>
+
+    <!-- NAVBAR PILL -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.svg" alt="logo tumsis" class="logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="matches.html">Matches</a>
+                <a href="fighters.html">Fighters</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="tiket.html">Tickets</a>
+            </div>
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="assets/images/hero-fighter.jpg" alt="Fighter">
+        </div>
+
+        <div class="hero-inner">
+            <div class="hero-left">
+                <div class="hero-eyebrow">
+                    <div class="eyebrow-dot"></div>
+                    <span>Vol.4 &nbsp;·&nbsp; Soon 2027</span>
+                </div>
+                <h1 class="hero-title">
+                    FIGHT<br>
+                    <span class="line-2">
+                        IS <span class="accent">→</span> <span class="soul">SOUL</span>
+                    </span>
+                </h1>
+                <p class="hero-desc">
+                    Platform untuk mengembangkan bakat olahraga ketangkasan dengan simulasi yang realistis. Bangun disiplin, ketahanan mental, dan jiwa sportivitas sejati dalam lingkungan yang aman dan profesional.
+                </p>
+                <div class="hero-actions">
+                    <a href="tiket.html" class="btn-primary">AMANKAN TIKET &nbsp;→</a>
+                    <a href="gallery.html" class="btn-ghost">Lihat Keseruan Vol.3</a>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <div class="stat-pill">
+                    <div class="stat-num">3<span class="stat-accent"></span></div>
+                    <div class="stat-label">Volume Event</div>
+                </div>
+                <div class="hero-vol-badge">
+                    <div class="vol-num">VOL<span style="font-size:0.5em">.4</span></div>
+                    <div class="vol-label">Coming Soon</div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-num">100<span class="stat-accent">%</span></div>
+                    <div class="stat-label">Safe & Legal</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section">
+        <div class="max-w">
+            <div class="video-layout">
+                <div class="video-copy reveal">
+                    <span class="section-eyebrow">// Energi Arena</span>
+                    <h2 class="section-title">RASAKAN<br>ENERGI<br><span style="color:var(--red)">TUMBUK<br>SISWA.</span></h2>
+                    <p>Bukan sekadar latihan fisik ini ruang untuk membentuk disiplin, mental yang kuat, dan saling menghormati di antara anak-anak muda.</p>
+                </div>
+                <div class="video-grid reveal reveal-delay-2">
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline><source src="assets/videos/video-1.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline><source src="assets/videos/video-2.mp4" type="video/mp4"></video>
+                    </div>
+                    <div class="video-card">
+                        <video autoplay muted loop playsinline><source src="assets/videos/video-3.mp4" type="video/mp4"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach-section">
+        <div class="max-w">
+            <div class="approach-grid reveal">
+                <div class="approach-img-wrap">
+                    <img src="assets/images/approach-train.jpg" alt="Training">
+                </div>
+                <div class="approach-copy">
+                    <span class="section-eyebrow">// Filosofi Kami</span>
+                    <h2 class="section-title">UNIQUE<br>APPROACH<br>FOR <span style="color:var(--red)">YOU</span></h2>
+                    <div class="approach-divider"></div>
+                    <p>Kami merancang pendekatan yang menggabungkan kedisiplinan beladiri tradisional dengan standar keselamatan modern. Setiap siswa dibekali pelatihan mental dan fisik yang seimbang.</p>
+                    <p>Jauh dari sekadar kontak fisik ini panggung aplikasi teknik, strategi, dan prestasi sportivitas tertinggi di level akademik.</p>
+                    <a href="about.html" class="btn-ghost" style="width:fit-content; margin-top:8px;">Selengkapnya →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories-section">
+        <div class="max-w">
+            <div class="categories-header reveal">
+                <span class="section-eyebrow">// Kategori Tanding</span>
+                <h2 class="section-title">ARENA<br>TIER LEVEL</h2>
+            </div>
+            
+            <div class="categories-deck">
+                <!-- Card 1: Remedial -->
+                <div class="cat-deck-card reveal reveal-delay-1" onclick="toggleCatModal('modal-remedial')">
+                    <div class="cat-img-wrapper">
+                        <img src="assets/images/tier-remedial.jpg" alt="Remedial">
+                    </div>
+                    <div class="cat-glass-badge">Under 55 KG</div>
+                    <div class="cat-glass-panel">
+                        <div class="cat-panel-top">
+                            <h3>Kelas Remedial</h3>
+                            <div class="cat-action-btn">DETAIL →</div>
+                        </div>
+                        <p class="cat-panel-desc">Kecepatan tinggi dan kelincahan penuh — uji kompetensi dasar untuk adaptasi awal simulasi tanding.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: KKM -->
+                <div class="cat-deck-card reveal reveal-delay-2" onclick="toggleCatModal('modal-kkm')">
+                    <div class="cat-img-wrapper">
+                        <img src="assets/images/tier-kkm.jpg" alt="KKM">
+                    </div>
+                    <div class="cat-glass-badge">56 – 65 KG</div>
+                    <div class="cat-glass-panel">
+                        <div class="cat-panel-top">
+                            <h3>Kelas KKM</h3>
+                            <div class="cat-action-btn">DETAIL →</div>
+                        </div>
+                        <p class="cat-panel-desc">Perpaduan presisi eksekusi teknik dan taktik bertahan yang solid di batas standar performa.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Akselerasi -->
+                <div class="cat-deck-card reveal reveal-delay-3" onclick="toggleCatModal('modal-akselerasi')">
+                    <div class="cat-img-wrapper">
+                        <img src="assets/images/tier-akselerasi.jpg" alt="Akselerasi">
+                    </div>
+                    <div class="cat-glass-badge">Over 65 KG</div>
+                    <div class="cat-glass-panel">
+                        <div class="cat-panel-top">
+                            <h3>Kelas Akselerasi</h3>
+                            <div class="cat-action-btn">DETAIL →</div>
+                        </div>
+                        <p class="cat-panel-desc">Tingkat lanjut performa tinggi — ketahanan fisik optimal dan intensitas teknik maksimal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Tambahan -->
+                <div class="cat-deck-card reveal reveal-delay-4" onclick="toggleCatModal('modal-tambahan')">
+                    <div class="cat-img-wrapper">
+                        <img src="assets/images/tier-tambahan.jpg" alt="Exhibition">
+                    </div>
+                    <div class="cat-glass-badge">Free Pass</div>
+                    <div class="cat-glass-panel">
+                        <div class="cat-panel-top">
+                            <h3>Laga Tambahan</h3>
+                            <div class="cat-action-btn">DETAIL →</div>
+                        </div>
+                        <p class="cat-panel-desc">Eksibisi lintas kategori berdasarkan evaluasi teknis dan rekomendasi keselamatan bersama.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 1: Remedial -->
+            <div id="modal-remedial" class="cat-mobile-modal">
+                <div class="modal-overlay" onclick="toggleCatModal('modal-remedial')"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="toggleCatModal('modal-remedial')">×</button>
+                    <div class="modal-img-wrap">
+                        <img src="assets/images/tier-remedial.jpg" alt="Remedial">
+                        <span class="modal-badge">Under 55 KG</span>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Kelas Remedial</h3>
+                        <p>Kecepatan tinggi dan kelincahan penuh — uji kompetensi dasar untuk adaptasi awal simulasi tanding.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 2: KKM -->
+            <div id="modal-kkm" class="cat-mobile-modal">
+                <div class="modal-overlay" onclick="toggleCatModal('modal-kkm')"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="toggleCatModal('modal-kkm')">×</button>
+                    <div class="modal-img-wrap">
+                        <img src="assets/images/tier-kkm.jpg" alt="KKM">
+                        <span class="modal-badge">56 – 65 KG</span>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Kelas KKM</h3>
+                        <p>Perpaduan presisi eksekusi teknik dan taktik bertahan yang solid di batas standar performa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 3: Akselerasi -->
+            <div id="modal-akselerasi" class="cat-mobile-modal">
+                <div class="modal-overlay" onclick="toggleCatModal('modal-akselerasi')"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="toggleCatModal('modal-akselerasi')">×</button>
+                    <div class="modal-img-wrap">
+                        <img src="assets/images/tier-akselerasi.jpg" alt="Akselerasi">
+                        <span class="modal-badge">Over 65 KG</span>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Kelas Akselerasi</h3>
+                        <p>Tingkat lanjut performa tinggi — ketahanan fisik optimal dan intensitas teknik maksimal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 4: Tambahan -->
+            <div id="modal-tambahan" class="cat-mobile-modal">
+                <div class="modal-overlay" onclick="toggleCatModal('modal-tambahan')"></div>
+                <div class="modal-content">
+                    <button class="modal-close" onclick="toggleCatModal('modal-tambahan')">×</button>
+                    <div class="modal-img-wrap">
+                        <img src="assets/images/tier-tambahan.jpg" alt="Exhibition">
+                        <span class="modal-badge">Free Pass</span>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Laga Tambahan</h3>
+                        <p>Eksibisi lintas kategori berdasarkan evaluasi teknis dan rekomendasi keselamatan bersama.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mini Controller Script -->
+            <script>
+                function toggleCatModal(id) {
+                    if (window.innerWidth <= 768) {
+                        const modal = document.getElementById(id);
+                        if (modal) {
+                            modal.classList.toggle('active');
+                            if (modal.classList.contains('active')) {
+                                document.body.style.overflow = 'hidden';
+                            } else {
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    }
+                }
+            </script>
+        </div>
+    </section>
+
+    <!-- ARCHIVES -->
+    <section class="archives-section">
+        <div class="max-w">
+            <div class="archives-header reveal">
+                <div>
+                    <span class="section-eyebrow">// Journey & Archives</span>
+                    <h2 class="section-title">PERJALANAN KITA.</h2>
+                </div>
+                <a href="gallery.html" class="btn-ghost">Lihat Gallery →</a>
+            </div>
+            <div class="archives-grid">
+                <div class="archive-card reveal reveal-delay-1">
+                    <div class="archive-img"><img src="assets/images/1.jpg" alt="Vol.1"></div>
+                    <div class="archive-info">
+                        <div class="archive-vol">VOL.1</div>
+                        <div class="archive-sub">Origin</div>
+                    </div>
+                </div>
+                <div class="archive-card reveal reveal-delay-2">
+                    <div class="archive-img"><img src="assets/images/2.jpg" alt="Vol.2"></div>
+                    <div class="archive-info">
+                        <div class="archive-vol">VOL.2</div>
+                        <div class="archive-sub">Evolve</div>
+                    </div>
+                </div>
+                <div class="archive-card reveal reveal-delay-3">
+                    <div class="archive-img"><img src="assets/images/3.jpg" alt="Vol.3"></div>
+                    <div class="archive-info">
+                        <div class="archive-vol">VOL.3</div>
+                        <div class="archive-sub">Impact</div>
+                    </div>
+                </div>
+                <div class="archive-card reveal reveal-delay-4">
+                    <div class="archive-img"><img src="assets/images/4.jpg" alt="Vol.4"></div>
+                    <div class="archive-info">
+                        <div class="archive-vol">VOL.4</div>
+                        <div class="archive-sub">Prepare Yourself</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+        <div class="max-w">
+            <div class="cta-inner reveal">
+                <div class="cta-left">
+                    <h2>AMANKAN<br>KURSIMU.</h2>
+                    <p>Kuota terbatas. Jangan sampai kehabisan.</p>
+                </div>
+                <a href="tiket.html" class="btn-white">PESAN TIKET SEKARANG &nbsp;→</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- FOOTER MODERN DARK VERSION -->
+<footer class="footer-modern">
+    <div class="footer-max-w">
+        
+        <!-- Main Footer Content -->
+        <div class="footer-main-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand-side">
+                <a href="index.html" class="footer-logo">TUMBUK SISWA</a>
+                <p class="footer-brand-desc">
+                    Platform manajemen olahraga tarung pelajar berprestasi, aman, legal, dan menjunjung tinggi kehormatan olahraga.
+                </p>
+                <!-- Tombol Download / Aksi (Opsional, Meniru Mac Download Button di Referensi) -->
+            
+            </div>
+
+            <!-- Links Columns -->
+            <div class="footer-links-side">
+                <div class="footer-col-nav">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">Tentang Kami</a></li>
+                        <li><a href="#">Aturan Medis</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h4>Matches</h4>
+                    <ul>
+                        <li><a href="matches.html">Jadwal Vol.4</a></li>
+                        <li><a href="#">Arsip Match</a></li>
+                        <li><a href="tiket.html">Beli Tiket</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col-nav">
+                    <h4>Socials</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Info / Copyright Section -->
+        <div class="footer-meta-row">
+            <p class="copyright">© 2026 Tumbuk Siswa. All rights reserved.</p>
+            <p class="credits">Built with ❤️ by GNZX Studio</p>
+        </div>
+
+    </div>
+
+    <!-- Giant Background Text (Efek Teks Besar di Belakang) -->
+    <div class="footer-giant-bg-text">
+        <span>Tumbuksiswa</span>
+    </div>
+</footer>
+    <!-- JS Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core/supabase-client.js"></script>
+    <script src="js/core/global.js"></script>
+</body>
+</html>

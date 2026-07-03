@@ -1,0 +1,258 @@
+/* ==========================================================================
+   TUMBUK SISWA — NAVBAR FLOATING PILL
+   Ganti semua navbar CSS yang ada di masing-masing style.css dengan ini,
+   atau link file ini setelah style utama.
+   ========================================================================== */
+
+/* Reset navbar lama */
+.navbar {
+    position: fixed !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: calc(100% - 32px) !important;
+    background: transparent !important;
+    border-bottom: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    z-index: 100 !important;
+}
+
+.nav-container {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    background: rgba(12, 12, 12, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 999px !important;
+    padding: 8px 8px 8px 20px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+    width: max-content !important;
+    min-width: 0 !important;
+}
+
+/* Logo */
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    margin-right: 16px !important;
+    flex-shrink: 0 !important;
+}
+
+.logo-img {
+    height: 32px !important;
+    width: auto !important;
+}
+
+/* Divider setelah logo */
+.nav-container::after {
+    content: '' !important;
+    display: block !important;
+    width: 1px !important;
+    height: 20px !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+    margin: 0 16px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Nav links */
+.nav-links {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    flex-direction: row !important;
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.6) !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    padding: 8px 14px !important;
+    border-radius: 999px !important;
+    transition: color 0.2s ease, background 0.2s ease !important;
+    white-space: nowrap !important;
+    border-left: none !important;
+    display: block !important;
+    width: auto !important;
+}
+
+.nav-links a:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    padding-left: 14px !important;
+}
+
+.nav-links a.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-left: none !important;
+    padding-left: 14px !important;
+}
+
+/* CTA Button — Tickets */
+.nav-links a[href="tiket.html"] {
+    background: #CD0100 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    padding: 10px 20px !important;
+    margin-left: 8px !important;
+    letter-spacing: 0.5px !important;
+}
+
+.nav-links a[href="tiket.html"]:hover {
+    background: #e50200 !important;
+    color: #ffffff !important;
+}
+
+/* Hamburger — hidden desktop */
+.menu-toggle {
+    display: none !important;
+}
+
+/* Body padding biar konten ga ketutup navbar */
+body {
+    padding-top: 0 !important;
+}
+
+/* Section pertama: kasih padding top biar ga ketutup */
+body > *:not(.navbar):first-of-type,
+.hero,
+.about-header,
+.fighters-header,
+.gallery-header,
+.matches-header,
+section:first-of-type {
+    padding-top: calc(80px + 40px) !important;
+}
+
+/* ==========================================================================
+   MOBILE — Hamburger Mode
+   ========================================================================== */
+@media (max-width: 768px) {
+
+    .navbar {
+        top: 12px !important;
+        max-width: calc(100% - 24px) !important;
+    }
+
+    .nav-container {
+        padding: 8px 8px 8px 16px !important;
+        width: calc(100vw - 24px) !important;
+        max-width: calc(100vw - 24px) !important;
+        justify-content: space-between !important;
+        border-radius: 999px !important;
+    }
+
+    /* Sembunyiin nav-links default di mobile */
+    .nav-links {
+        display: none !important;
+        position: fixed !important;
+        top: 72px !important;
+        left: 12px !important;
+        right: 12px !important;
+        width: auto !important;
+        flex-direction: column !important;
+        background: rgba(10, 10, 10, 0.97) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.07) !important;
+        border-radius: 24px !important;
+        padding: 12px !important;
+        gap: 4px !important;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.6) !important;
+        z-index: 99 !important;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    .nav-links a {
+        font-size: 15px !important;
+        padding: 14px 16px !important;
+        border-radius: 14px !important;
+        width: 100% !important;
+        color: rgba(255,255,255,0.7) !important;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: rgba(255,255,255,0.07) !important;
+        color: #ffffff !important;
+        padding-left: 16px !important;
+    }
+
+    /* Tickets CTA di mobile */
+    .nav-links a[href="tiket.html"] {
+        background: #CD0100 !important;
+        color: #ffffff !important;
+        margin-left: 0 !important;
+        margin-top: 8px !important;
+        text-align: center !important;
+        padding: 14px 16px !important;
+    }
+
+    /* Sembunyiin divider di mobile */
+    .nav-container::after {
+        display: none !important;
+    }
+
+    /* Tampilkan hamburger */
+    .menu-toggle {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 5px !important;
+        background: rgba(255,255,255,0.08) !important;
+        border: none !important;
+        border-radius: 999px !important;
+        width: 40px !important;
+        height: 40px !important;
+        cursor: pointer !important;
+        flex-shrink: 0 !important;
+        padding: 0 !important;
+        transition: background 0.2s !important;
+    }
+
+    .menu-toggle:hover {
+        background: rgba(255,255,255,0.12) !important;
+    }
+
+    .menu-toggle span {
+        display: block !important;
+        width: 18px !important;
+        height: 1.5px !important;
+        background: #ffffff !important;
+        border-radius: 2px !important;
+        transition: transform 0.3s ease, opacity 0.3s ease !important;
+        transform-origin: center !important;
+    }
+
+    /* Animasi X */
+    .menu-toggle.active span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg) !important;
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        transform: translateY(-6.5px) rotate(-45deg) !important;
+    }
+
+    /* Logo lebih kecil */
+    .logo-img {
+        height: 28px !important;
+    }
+}

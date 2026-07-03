@@ -1,0 +1,34 @@
+/* ==========================================================================
+   FIGHTERS PAGE STYLING
+   Mengandalkan css/base/style.css dan css/components/navbar.css.
+   ========================================================================== */
+
+/* HEADER */
+.fighters-header { padding-top: 80px; padding-bottom: 48px; }
+
+/* ROSTER GRID BUILDER */
+.fighters-container { padding-bottom: 128px; }
+.roster-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+
+.fighter-card { background-color: var(--bg-dark); border: 1px solid var(--bg-light); border-radius: 28px; overflow: hidden; transition: border-color 0.3s; }
+.fighter-card:hover { border-color: var(--accent); }
+
+.fighter-photo { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; position: relative; background-color: var(--bg-pitch); }
+.fighter-card:hover img { transform: scale(1.05); filter: grayscale(40%) contrast(110%); }
+
+.record-badge { position: absolute; bottom: 16px; right: 16px; background-color: var(--bg-pitch); border: 1px solid var(--bg-light); font-family: var(--font-display); font-size: 14px; font-weight: 700; padding: 6px 14px; border-radius: 12px; letter-spacing: 1px; }
+.fighter-card:hover .record-badge { border-color: var(--accent); color: var(--accent); }
+
+.fighter-details { padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+.fighter-details h2 { font-family: var(--font-display); font-size: 24px; text-transform: uppercase; letter-spacing: -0.5px; }
+.school { color: var(--text-gray); font-size: 13px; }
+
+/* TIER TAGS COMPONENTS */
+.tier-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 6px; align-self: flex-start; }
+.tier-tag.acceleration { background-color: rgba(205, 1, 0, 0.15); color: var(--accent); border: 1px solid rgba(205, 1, 0, 0.3); }
+.tier-tag.kkm { background-color: rgba(255, 255, 255, 0.05); color: var(--text-main); border: 1px solid var(--bg-light); }
+.tier-tag.remedial { background-color: rgba(153, 153, 153, 0.1); color: var(--text-gray); border: 1px solid var(--bg-light); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) { .roster-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+
