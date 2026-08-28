@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // ==========================================
+    // 0. MODE MAINTENANCE: SEMENTARA CUMA TAMPILKAN TIKET
+    // Ganti ke false kalau mau balikin semua menu lagi
+    // ==========================================
+    const MAINTENANCE_TIKET_ONLY = true;
+
+    if (MAINTENANCE_TIKET_ONLY) {
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            if (!link.getAttribute('href').includes('tiket.html')) {
+                link.style.display = 'none';
+            }
+        });
+    }
+
+    // ==========================================
+    // 1. HAMBURGER MENU (MOBILE NAVIGATION)
+    // ==========================================
+    ...
     // ==========================================
     // 1. HAMBURGER MENU (MOBILE NAVIGATION)
     // ==========================================
