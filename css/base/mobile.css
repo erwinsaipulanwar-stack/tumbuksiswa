@@ -608,16 +608,22 @@ html, body {
         padding: 20px !important;
     }
 
-    .h-right-panel {
+        .h-right-panel {
         width: 100% !important;
-        padding: 20px !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
+        padding: 20px 15px 25px !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 
     .h-vertical-tag {
-        writing-mode: horizontal-tb !important;
-        margin-bottom: 0 !important;
+        display: none !important;
+    }
+
+    .h-qr-code-str {
+        max-width: 100% !important;
+        word-break: break-all !important;
+        white-space: normal !important;
     }
 }
 
