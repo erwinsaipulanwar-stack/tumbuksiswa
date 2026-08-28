@@ -390,7 +390,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ? `${daftarNama[0]} (+ ${daftarNama.length - 1} rekan: ${daftarNama.slice(1).join(', ')})`
                 : (daftarNama[0] || initialOrder.nama_pemesan);
 
-            const totalFormatted = "Rp " + Number(initialOrder.total_harga).toLocaleString('id-ID');
+                        const totalFormatted = "Rp " + Number(initialOrder.total_harga).toLocaleString('id-ID');
+
+            // Link akses tiket — pakai token yang sama dengan yang dipakai halaman ini
+            const linkTiket = `${window.location.origin}${window.location.pathname}?token=${encodeURIComponent(token)}`;
 
             const teksPesan = [
                 `Halo Kak, saya mau konfirmasi pembayaran tiket *Tumbuk Siswa Vol. 4* 🥊`,
@@ -403,7 +406,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `• Jumlah      : ${initialOrder.jumlah_tiket} Tiket`,
                 `• Total Bayar : *${totalFormatted}*`,
                 ``,
-                `Bukti transfer sudah saya kirimkan. Mohon segera dikonfirmasi ya, Kak. Terima kasih! 🙏`
+                `Bukti transfer sudah saya kirimkan. Mohon segera dikonfirmasi ya, Kak. Terima kasih! 🙏`,
+                ``,
+                `🔗 Link akses tiket saya:`,
+                linkTiket
             ].join('\n');
 
             window.open(`https://wa.me/${NO_ADMIN_WA}?text=${encodeURIComponent(teksPesan)}`, '_blank');
