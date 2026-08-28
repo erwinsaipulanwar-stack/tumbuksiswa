@@ -266,12 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const result = data[0];
 
-                // Simpan invoice_code & kontak_wa ke localStorage
-                // payment.html akan query ulang via get_order_status (butuh keduanya karena IDOR fix)
-                localStorage.setItem('inv_id',     result.invoice_code);
-                localStorage.setItem('inv_kontak', pendingOrderPayload.p_kontak_wa); // [FIX IDOR] Simpan untuk verifikasi
+// [TOKEN] Simpan token akses (fallback kalau URL query hilang), lalu redirect pakai token di URL
+localStorage.setItem('inv_token', result.access_token);
 
-                window.location.href = 'payment.html';
+window.location.href = 'payment.html?token=' + result.access_token;
             } catch (err) {
                 console.error(err);
                 alert('Gagal membuat pesanan: ' + (err.message || 'Terjadi kesalahan, coba lagi.'));

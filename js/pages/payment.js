@@ -12,13 +12,15 @@
  * ==========================================================================
  */
 document.addEventListener('DOMContentLoaded', async () => {
-    const idInvoice  = localStorage.getItem('inv_id');
-    const idKontak   = localStorage.getItem('inv_kontak'); // [IDOR FIX]
+    // [TOKEN] Ambil dari URL dulu (?token=...), fallback ke localStorage kalau user refresh/buka lagi tanpa query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token') || localStorage.getItem('inv_token');
 
-    if (!idInvoice) {
+    if (!token) {
         document.body.innerHTML = '<p style="text-align:center;padding:60px;color:#999;">Invoice tidak ditemukan. Silakan pesan tiket terlebih dahulu.</p>';
         return;
     }
+    localStorage.setItem('inv_token', token); // simpan lagi biar reload tanpa query tetap jalan
 
     // -----------------------------------------------------------------------
     // [FIX QRIS DINAMIS] Generate QR via Edge Function "generate-qris"
@@ -62,17 +64,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Load order data dari Supabase (dengan IDOR second-factor via kontak WA)
     // -----------------------------------------------------------------------
     async function loadOrderData() {
-        // [IDOR FIX] Kirim p_kontak_wa sebagai second factor verification
-        const params = { p_invoice_code: idInvoice };
-        if (idKontak) params.p_kontak_wa = idKontak;
-
-        const { data, error } = await sb.rpc('get_order_status', params);
-        if (error || !data || data.length === 0) {
-            console.error("Gagal ambil data order:", error);
-            return null;
-        }
-        return data[0];
+    const { data, error } = await sb.rpc('get_order_status_by_token', { p_token: token });
+    if (error || !data || data.length === 0) {
+        console.error("Gagal ambil data order:", error);
+        return null;
     }
+    return data[0];
+}
 
     // -----------------------------------------------------------------------
     // Render header invoice (info pemesan, total, dll)
@@ -239,6 +237,28 @@ document.addEventListener('DOMContentLoaded', async () => {
                     .h-ticket-card { margin: 40px auto !important; page-break-after: always !important; box-shadow: none !important; border: 2px solid #1c1c1c !important; }
                     @page { size: landscape; margin: 0; }
                 }
+                    @media (max-width: 640px) {
+    .h-ticket-card {
+        flex-direction: column;
+        height: auto;
+        max-width: 100%;
+    }
+    .h-left-panel {
+        border-right: none;
+        border-bottom: 2px dashed #1f1f1f;
+        padding: 20px;
+    }
+    .h-flex-row {
+        flex-wrap: wrap;
+    }
+    .h-right-panel {
+        width: 100%;
+        padding: 20px 15px 25px;
+    }
+    .h-vertical-tag {
+        display: none;
+    }
+}
             </style>
             <div class="success-title-zone">
                 <span style="display:inline-block;color:#00ff66;font-weight:700;font-size:12px;letter-spacing:1px;margin-bottom:10px;">LUNAS ✓</span>
@@ -309,7 +329,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             btnUbah.onclick = (e) => {
                 e.preventDefault();
                 const NO_ADMIN_WA = "6283890435689";
-                const teks = `Halo Kak, saya butuh bantuan terkait order tiket Tumbuk Siswa.\n\nNo. Invoice: *${idInvoice}*\n\nMohon bantuannya. Terima kasih!`;
+                const teks = `Halo Kak, saya butuh bantuan terkait order tiket Tumbuk Siswa.\n\nNo. Invoice: *${initialOrder.invoice_code}*\n\nMohon bantuannya. Terima kasih!`;
                 window.open(`https://wa.me/${NO_ADMIN_WA}?text=${encodeURIComponent(teks)}`, '_blank');
             };
         }
@@ -363,7 +383,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const btnWa = document.getElementById('btn-wa-confirm');
     if (btnWa) {
         btnWa.addEventListener('click', () => {
-            const NO_ADMIN_WA = "6283890435689";
+            const NO_ADMIN_WA = "62895330829033";
 
             const daftarNama  = (initialOrder.qr_data || []).map(t => t.nama_pengunjung);
             const namaDisplay = daftarNama.length > 1
