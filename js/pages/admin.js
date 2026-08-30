@@ -91,6 +91,7 @@ async function launchDashboardUtilities() {
     initModalSystem();
     initFormHandlers();
     initScannerUIHandlers();
+    initOtsForm();
     await fetchDataFromSupabase();
     subscribeRealtimeAdmin();
     const logoutBtn = document.getElementById('logoutBtn');
@@ -264,6 +265,7 @@ function renderAllModules() {
     renderMatchesTable();
     renderOrdersTable();
     renderPricingCards();
+    renderOtsTierOptions();
 }
 
 // ==========================================================================
@@ -639,6 +641,176 @@ function renderPricingCards() {
             }
             toggleSkeleton(false);
         });
+    });
+}
+
+// ==========================================================================
+// TIKET OTS (On-The-Spot)
+// ==========================================================================
+function renderOtsTierOptions() {
+    const select = document.getElementById('otsTierSelect');
+    if (!select) return;
+    const currentValue = select.value;
+    select.innerHTML = '<option value="">-- Pilih Tier --</option>';
+    (appState.pricing || []).forEach(tier => {
+        const opt = document.createElement('option');
+        opt.value = tier.tier_key;
+        opt.textContent = `${tier.nama_tampil} — Rp ${Number(tier.harga).toLocaleString('id-ID')} (Sisa ${tier.sisa_kuota})`;
+        select.appendChild(opt);
+    });
+    if (currentValue) select.value = currentValue;
+}
+
+function initOtsForm() {
+    const otsForm       = document.getElementById('otsForm');
+    const btnSubmitOts  = document.getElementById('btnSubmitOts');
+    const otsResultBox  = document.getElementById('otsResultBox');
+    const otsResultInv  = document.getElementById('otsResultInvoice');
+    const btnPrintOts   = document.getElementById('btnPrintOts');
+    const otsJumlahInput = document.getElementById('otsJumlahInput');
+    const otsQrisBox     = document.getElementById('otsQrisBox');
+    const otsQrisImage   = document.getElementById('otsQrisImage');
+    const otsQrisLoader  = document.getElementById('otsQrisLoader');
+    const otsQrisNominal = document.getElementById('otsQrisNominal');
+
+    if (!otsForm) return;
+
+    const HARGA_FIX_OTS = 25000; // <<< HARUS SAMA dengan v_harga_fix di SQL
+
+    function hitungTotalOts() {
+        const jumlah = parseInt(otsJumlahInput.value) || 0;
+        return jumlah > 0 ? HARGA_FIX_OTS * jumlah : 0;
+    }
+
+    async function renderOtsQris() {
+        const metode = document.querySelector('input[name="otsMetode"]:checked')?.value;
+        const total  = hitungTotalOts();
+
+        if (metode !== 'QRIS' || total <= 0) {
+            otsQrisBox.style.display = 'none';
+            return;
+        }
+
+        otsQrisBox.style.display    = 'block';
+        otsQrisImage.style.display  = 'none';
+        otsQrisLoader.style.display = 'block';
+        otsQrisNominal.textContent  = `Rp ${total.toLocaleString('id-ID')}`;
+
+        try {
+            const { data, error } = await sb.functions.invoke('generate-qris', {
+                body: { amount: total }
+            });
+            if (error || !data || data.status !== 'success' || !data.qris_base64) {
+                throw new Error('generate-qris gagal/kosong');
+            }
+            otsQrisImage.src = `data:image/png;base64,${data.qris_base64}`;
+        } catch (err) {
+            console.error('QRIS OTS gagal, fallback statis:', err);
+            const QRIS_STATIC_PAYLOAD = "00020101021126570011ID.DANA.WWW011893600915302440156402090244015640303UMI51440014ID.CO.QRIS.WWW0215ID10265173474270303UMI5204581353033605802ID5917Erwin berkah jaya6011Kab. Bekasi6105177116304BE03";
+            otsQrisImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(QRIS_STATIC_PAYLOAD)}`;
+        } finally {
+            otsQrisImage.style.display  = 'block';
+            otsQrisLoader.style.display = 'none';
+        }
+    }
+
+    otsJumlahInput.addEventListener('input', renderOtsQris);
+    document.querySelectorAll('input[name="otsMetode"]').forEach(radio => {
+        radio.addEventListener('change', renderOtsQris);
+    });
+
+    otsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const jumlah = parseInt(otsJumlahInput.value) || 0;
+        const metode = document.querySelector('input[name="otsMetode"]:checked')?.value;
+
+        if (jumlah < 1) { showToast('Jumlah orang minimal 1!', 'danger'); return; }
+        if (!metode)    { showToast('Pilih metode bayar dulu!', 'danger'); return; }
+
+        btnSubmitOts.disabled  = true;
+        btnSubmitOts.innerText = 'Memproses...';
+
+        try {
+            const { data, error } = await sb.rpc('checkout_order_ots', {
+                p_jumlah_tiket: jumlah,
+                p_metode_pembayaran: metode
+            });
+            if (error) throw error;
+
+            const result = data[0];
+            otsResultInv.textContent = result.invoice_code;
+            otsResultBox.style.display = 'block';
+
+            if (btnPrintOts) {
+                btnPrintOts.onclick = () => printTicketCyberpunk(result.order_id);
+            }
+
+            showToast('Tiket OTS berhasil disimpan!', 'success');
+            await fetchDataFromSupabase(true);
+
+            otsForm.reset();
+            otsQrisBox.style.display = 'none';
+        } catch (err) {
+            console.error(err);
+            showToast(`Gagal: ${err.message}`, 'danger');
+        } finally {
+            btnSubmitOts.disabled  = false;
+            btnSubmitOts.innerText = 'Catat & Simpan Tiket';
+        }
+    });
+
+
+    // Re-generate QRIS tiap kali tier/jumlah/metode berubah
+    otsTierSelect.addEventListener('change', renderOtsQris);
+    otsJumlahInput.addEventListener('input', renderOtsQris);
+    document.querySelectorAll('input[name="otsMetode"]').forEach(radio => {
+        radio.addEventListener('change', renderOtsQris);
+    });
+
+    otsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const tierKey  = document.getElementById('otsTierSelect').value;
+        const jumlah   = parseInt(document.getElementById('otsJumlahInput').value) || 0;
+        const metode   = document.querySelector('input[name="otsMetode"]:checked')?.value;
+
+        if (!tierKey) { showToast('Pilih kategori tiket dulu!', 'danger'); return; }
+        if (jumlah < 1) { showToast('Jumlah orang minimal 1!', 'danger'); return; }
+        if (!metode) { showToast('Pilih metode bayar dulu!', 'danger'); return; }
+
+        btnSubmitOts.disabled  = true;
+        btnSubmitOts.innerText = 'Memproses...';
+
+        try {
+            const { data, error } = await sb.rpc('checkout_order_ots', {
+                p_tier_key: tierKey,
+                p_jumlah_tiket: jumlah,
+                p_metode_pembayaran: metode
+            });
+            if (error) throw error;
+
+            const result = data[0];
+            otsResultInv.textContent = result.invoice_code;
+            otsResultBox.style.display = 'block';
+
+            if (btnPrintOts) {
+                btnPrintOts.onclick = () => printTicketCyberpunk(result.order_id);
+            }
+
+            await logActivity(`Tiket OTS dijual: ${jumlah} tiket tier ${tierKey} (${metode})`);
+            showToast('Tiket OTS berhasil disimpan!', 'success');
+            await fetchDataFromSupabase(true);
+
+            otsForm.reset();
+            otsQrisBox.style.display = 'none';
+        } catch (err) {
+            console.error(err);
+            showToast(`Gagal: ${err.message}`, 'danger');
+        } finally {
+            btnSubmitOts.disabled  = false;
+            btnSubmitOts.innerText = 'Catat & Simpan Tiket';
+        }
     });
 }
 
