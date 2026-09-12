@@ -33,7 +33,7 @@
 
 /* FORM STYLING */
 .main-form {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 32px;
 }
@@ -200,6 +200,7 @@ input[type="number"] {
 
 /* SIDEBAR STICKY CARD */
 .sidebar-sticky-card {
+    display: none;
     position: sticky;
     top: 112px;
     background-color: var(--bg-dark);
